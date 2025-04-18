@@ -1,0 +1,66 @@
+{% extends 'hear_foot.html' %} <!-- base.html jodi thake -->
+
+{% block title %}Dashboard{% endblock %}
+
+{% block main %}
+<div class="about_hero">
+    <div class="overalay1"></div>
+    <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <h1 style="font-size: 3.5vw;">WELCOME TO YOUR DASHBOARD</h1>
+      <p>We Make Food With Heart.</p>
+    </div>
+  </div>
+<div class="login_page" style="font-family: poppins;  ">
+    <div class="dashboard-container">
+  
+      <!-- Profile Section -->
+      <div class="profile-card">
+        <h2>Welcome, {{ request.user.username }} 👋</h2>
+        <p><strong>Email:</strong> {{ request.user.email }}</p>
+        <a href="{% url 'logout' %}" class="logout-btn">Logout</a>
+      </div>
+  
+      <!-- Orders Section -->
+      <div class="orders-card">
+        <h2>Your Orders</h2>
+  
+        {% if orders %}
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Item</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for order in orders %}
+              <tr>
+                <td>{{ forloop.counter }}</td>
+                <td>{{ order.item_name }}</td>
+                <td>{{ order.total }}</td>
+                <td>Confirmed</td>
+                <td>
+                    {% if order.status != "Cancelled" %}
+                    <a style="text-decoration: none; color: red;" href="{% url 'cancel_order' order.id %}" class="btn btn-danger">Cancel Now</a>
+                  {% else %}
+                    Cancelled
+                  {% endif %}
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% else %}
+          <p style="margin-top: 10px;">You haven't placed any orders yet.</p>
+        {% endif %}
+      </div>
+  
+    </div>
+  </div>
+
+{% endblock %}
+
+

@@ -1,0 +1,106 @@
+{% extends 'hear_foot.html' %}
+{% block title %}
+  ORDER
+{% endblock title %}
+
+{% block main %}
+<div class="about_hero">
+  <div class="overalay1"></div>
+  <div class="container" style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <h1 style="font-size: 3.5vw;">ORDER YOUR FOOD NOW</h1>
+    <p>We Make Food With Heart.</p>
+  </div>
+</div>
+
+<div class="order">
+  <form class="order-form" method="POST">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <input type="text" name="order_name" placeholder="Name" required />
+    <input type="email" name="email" placeholder="Email" required />
+
+    <!-- New Dropdowns -->
+   
+
+    <input type="number" id="quantity" name="total" placeholder="Quantity" min="1" value="1" required />
+
+    
+
+    <input type="text" name="phone" placeholder="Phone Number" required />
+    <textarea name="address" placeholder="Address" rows="4" required style="background: transparent; border: 1px #ffffff75 solid;"></textarea>
+    <div class="drop">
+      <select id="categoryDropdown" class="down" required>
+        <option value="">Select Category</option>
+        {% for cat in categories %}
+          <option value="{{ cat.id }}">{{ cat.Cat_name }}</option>
+        {% endfor %}
+      </select>
+  
+      <select id="itemDropdown"  class="down" name="item_name" required>
+        <option value="">Select Food</option>
+      </select>
+    </div>
+    <p style="margin-top: 2vh; margin-bottom: 2vh; text-align: center;font-family: poppins; color: #fff;">Total Price: <span style="color: red;" id="totalPrice">0</span> Tk</p>
+    <button type="submit">Place Order</button>
+  </form>
+</div>
+
+<!-- Inline script or move to custom.js -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const categoryDropdown = document.getElementById("categoryDropdown");
+    const itemDropdown = document.getElementById("itemDropdown");
+    const quantityInput = document.getElementById("quantity");
+    const totalPriceSpan = document.getElementById("totalPrice");
+
+    let currentPrice = 0;
+
+    categoryDropdown.addEventListener("change", function () {
+      const catId = this.value;
+      itemDropdown.innerHTML = '<option value="">Loading...</option>';
+      fetch(`/get-items/${catId}/`)
+        .then(response => response.json())
+        .then(data => {
+          itemDropdown.innerHTML = '<option value="">Select Food</option>';
+          data.forEach(item => {
+            const option = document.createElement("option");
+            option.value = JSON.stringify({ name: item.Name, price: item.price });
+            option.textContent = item.Name;
+            itemDropdown.appendChild(option);
+          });
+        });
+    });
+
+    itemDropdown.addEventListener("change", function () {
+      const selected = this.value;
+      if (selected) {
+        const item = JSON.parse(selected);
+        currentPrice = item.price;
+        this.setAttribute('data-name', item.name);
+        updateTotal();
+      }
+    });
+
+    quantityInput.addEventListener("input", updateTotal);
+
+    function updateTotal() {
+      const qty = parseInt(quantityInput.value) || 0;
+      totalPriceSpan.textContent = qty * currentPrice;
+    }
+
+    // Sync correct item_name before submit
+    document.querySelector("form").addEventListener("submit", function () {
+      const selected = itemDropdown.value;
+      if (selected) {
+        const item = JSON.parse(selected);
+        const hiddenInput = document.createElement("input");
+        hiddenInput.type = "hidden";
+        hiddenInput.name = "item_name";
+        hiddenInput.value = item.name;
+        this.appendChild(hiddenInput);
+      }
+    });
+  });
+</script>
+{% endblock main %}

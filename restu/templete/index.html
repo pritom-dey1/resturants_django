@@ -1,0 +1,157 @@
+{% extends 'hear_foot.html' %}
+
+{% block title %}
+  WELCOME
+{% endblock title %}
+  
+
+{% block main %}
+  <div class="hero">
+    <div class="overalay"></div>
+    <div class="container">
+      <h1>Welcome! <br>
+        We Made Delicious <br> Food for You</h1>
+        <p>Homestyle Italian cooking   best enjoyed<br> with family.</p>
+        <button>Oder Now</button>
+    </div>
+  </div>
+  <div class="about">
+    <h1>Why We are Best Food Maker</h1>
+    <p>Great food and great company.
+       </p>
+    <div class="about_cont">
+      <div class="about_left">
+       
+        {% for w in about %}
+        <p>{{w.about_description}} </p>
+        {% endfor %}
+          
+      </div>
+      <div class="about_right">
+       <img src="/static/images/about.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="top_pro">
+    <h1>Our Best & Delicious Food</h1>
+    <div class="food_list">
+      <div class="food_cont">
+        {% for j in items %}
+    <div class="box" data-category="{{ j.category }}">      <div class="img_box">
+        
+    
+        <img src="/static{{j.img.url}}" alt="">
+     
+        
+        <h2 style="font-family: poppins;">{{j.Name}}</h2>
+        <p style="font-family: poppins;"">{{j.description}}</p>
+      </div>
+      <div class="price_box">
+        <div class="price" style="font-family: poppins;"">${{j.price}}</div>
+        <div class="order1">
+          <a href="/order"><button  >Oder Now</button></a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+       
+      </div>
+    </div>
+    <a href="/menu" style="  font-family: poppins;
+;   text-decoration: none;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+  font-weight: 500;  cursor: pointer;
+    transition: ease all 0.3s;"><button">See More</button></a>
+  </div>
+  <div class="number">
+    <h1>We believe in making quality food</h1>
+  <div class="num_box">
+    <div class="box1">
+      <div class="num">2M+</div>
+      <div class="text">Happy Customers</div>
+
+    </div>
+    <div class="box1">
+      <div class="num">98%</div>
+      <div class="text">Customers Satisfaction</div>
+    </div>
+    <div class="box1">
+      <div class="num">20+</div>
+      <div class="text">OurBranches</div>
+    </div>
+    <div class="box1">
+      <div class="num">100+</div>
+      <div class="text">Our Employees</div>
+    </div>
+  </div>
+
+  </div>
+  <div class="testimonail">
+    <main>
+      <h1>What customers say about us ?</h1>
+    
+      <div class="slider">
+          <div class="slide-row" id="slide-row">
+            <div class="slide-col">
+                  <div class="content4">
+                      <p>Zen Doan is a business analyst, entrepreneur and media proprietor, and investor. She also known as the best selling book author.</p>
+                      <h2>Zen</h2>
+                      <p>Author</p>
+                  </div>
+                  <div class="hero3">
+                      <img src="https://user-images.githubusercontent.com/13468728/234031693-6bbaba7d-632c-4d7d-965f-75a76a549ce2.jpg" alt="avatar">
+                  </div>
+              </div>
+    
+              <div class="slide-col">
+                  <div class="content4">
+                      <p>Jonathan Koletic is an American internet entrepreneur and media proprietor, and investor. He is the founder of the multi-national technology company Treymont.</p>
+                      <h2>Jonathan</h2>
+                      <p>Treymont Inc.</p>
+                  </div>
+                  <div class="hero3">
+                      <img src="https://user-images.githubusercontent.com/13468728/234031617-2dfb19ea-01d0-4370-b63b-bb6bdfb4f78e.jpg" alt="avatar">
+                  </div>
+              </div>
+    
+              <div class="slide-col">
+                  <div class="content4">
+                      <p>Charlie Green is an European entrepreneur and media consultant, and investor. He is the founder of the Hallmark Inc.</p>
+                      <h2>Charlie</h2>
+                      <p>Hallmark Inc.</p>
+                  </div>
+                  <div class="hero3">
+                      <img src="https://user-images.githubusercontent.com/13468728/234031646-10533999-39e5-4c7b-ab54-d0299b13ce74.jpg" alt="avatar">
+                  </div>
+              </div>
+            
+             <div class="slide-col">
+                  <div class="content4">
+                      <p>Sarah Dam is an American internet entrepreneur and media proprietor, and investor. She is the founder of the multi-national technology company Zara.</p>
+                      <h2>Sarah</h2>
+                      <p>Zara Inc.</p>
+                  </div>
+                  <div class="hero3">
+                      <img src="https://github.com/ecemgo/ecemgo/assets/13468728/55116c98-5f9a-4b0a-9fdb-4911b52d5ef3" alt="avatar">
+                  </div>
+              </div>
+    
+          </div>
+      </div>
+      
+      <div class="indicator">
+          <span class="btn active"></span>
+          <span class="btn"></span>
+          <span class="btn"></span>
+          <span class="btn"></span>
+      </div>
+    
+   
+    </main>
+  </div>
+{% endblock main %}
+  

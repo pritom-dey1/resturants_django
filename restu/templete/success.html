@@ -1,0 +1,57 @@
+{% extends 'hear_foot.html' %}
+{% block title %}
+  ORDER
+{% endblock title %}
+
+{% block main %}
+<style>
+  .succ_cont:hover{
+  border: 1px solid #fff;
+  scale: 1.005;
+}
+</style>
+<div class="success" style="height: 70vh;
+background-color: #0d0d0d;
+display: flex;
+align-items: center;
+justify-content: center;">
+  <div class="succ_cont" style="  padding: 50px;
+  background-color: #1a1a1a;
+  display: flex;
+  border-radius: 15px;
+  align-items: center;
+  transition: all ease .3s;
+  justify-content: center;
+  flex-direction: column;">
+     <h1 style="  color: #FFF;
+     font-family: poppins;
+     font-weight: 500;
+     font-size: 3vw;"> THANKS FOR ODER</h1>
+    <h2 style="letter-spacing: 1px;  color: #FFF;
+    font-weight: 400;
+    font-family: poppins;
+    font-size: 2vw;">YOUR ORDER PLACED SUCCESSFULLY</h2>
+    <h2 style="font-size: 1.7vw;  color: #FFF;
+    font-weight: 400;
+    font-family: poppins;
+    font-size: 2vw;">YOU WIL GET YOUR PRODUCT SOON
+    
+    </h2>
+    <a href="/" style="  font-family: poppins;
+    padding: 6px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.6vw;
+  font-weight: 400; 
+  text-decoration: none;
+   cursor: pointer;
+   margin-top: 3vh;
+    transition: ease all 0.3s;">Back To Home</a>
+  </div>
+</div>
+  
+{% endblock main %}
+
+  

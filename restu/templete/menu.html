@@ -1,0 +1,54 @@
+{% extends 'hear_foot.html' %}
+
+{% block title %}
+  MENU
+{% endblock title %}
+
+{% block main %}
+<div class="menu_page">
+    <div class="menu">
+        <h1>HERE IS OUR ALL ITEMS</h1>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div class="par_allmenu">
+        <div class="all_menu">
+          <div class="filter_buttons">
+            <button onclick="filterItems('all')" data-category="all" class="active">All</button>
+            {% for i in list %}
+              <button onclick="filterItems('{{ i.Cat_name }}')" data-category="{{ i.Cat_name }}">{{ i.Cat_name }}</button>
+            {% endfor %}
+            
+          </div>
+        </div>
+    </div>
+
+    <!-- Hidden Search Input -->
+    <input type="text" id="searchInput" value="{{ request.GET.q }}" style="display: none;">
+
+    <!-- Menu Items List -->
+    <div class="menu_list">
+        <div class="menu_box">
+            {% for j in items %}
+            <div class="box" data-category="{{ j.category }}">
+                <div class="img_box">
+                    <img src="/static{{ j.img.url }}" alt="">
+                    <h3 style="font-family: poppins;">{{ j.Name }}</h3>
+                    <p style="font-family: poppins;">{{ j.description }}</p>
+                </div>
+                <div class="price_box">
+                    <div class="price" style="font-family: poppins;">${{ j.price }}</div>
+                    <div class="order1">
+                        <a href="{% url 'single_item' j.id %}"><button>View More</button></a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Scroll Trigger to Load More Items -->
+    <div id="loadMoreTrigger"></div>
+
+</div>
+{% endblock main %}

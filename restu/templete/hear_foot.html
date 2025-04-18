@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    {% block title %}
+        
+    {% endblock title %}|KEITHSTON
+        </title>
+        <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+        <link rel="stylesheet" href="{%static 'css/style.css'%}">
+        <link rel="stylesheet" href="{%static 'css/responsive.css'%}">
+</head>
+<body>
+   
+    <nav>
+        <div class="nav">
+            <div class="left_nav">
+                <img src="{%static 'images/Logo.png'%}" alt="">
+              
+            </div>
+            <div class="right_nav">
+                <a href="/">Welcome</a>
+                <a href="/about">About</a>
+                <a href="/menu">Our Menu</a>
+                
+                <a href="/order">Order Now</a>
+            </div>
+            <div class="nav_search" style="border: 1px solid #fff;">
+                <form action="/menu" method="get" style="display: flex; gap: 10px;">
+                  <input
+                    type="text"
+                    name="q"
+                    id="searchInput"
+                    placeholder="Search items..."
+                    style="padding: 10px; width: 80%; color: #fff; font-family: poppins;"
+                  />
+                  <button type="submit" style="padding: 10px; font-family: poppins;">
+                    <i class="ri-search-eye-line"></i>
+                  </button>
+                </form>
+              </div>
+              <div class="login">
+                <a href="{% url 'login_redirect' %}">
+                    <i class="ri-user-fill"></i>
+                </a>
+                
+              </div>
+            
+        </div>
+        
+    </nav>
+    
+    {% block main %}
+        
+    {% endblock main %}
+    <footer>
+       <div class="footer">
+        <div class="top_foot">
+            <div class="foot_logo">
+                <img src="{% static 'images/Logo.png' %}" alt="">
+                <p> Once you try it,<br> you will love it.</p>
+            </div>
+        <div class="top_left">
+                <h1>Our Products</h1>
+                <h3>Our menus</h3>
+                <h3>Our burgers</h3>
+                <h3>Our times sides</h3>
+                <h3>Our naandwiches</h3>
+            </div>
+        <div class="top_mid">
+                <h1>legal information</h1>
+                <h3>Legal Notice</h3>
+            </div>
+        <div class="top_right">
+                <h1>Contact us</h1>
+                <h3>Contacts</h3>
+                <h3>Our addresses</h3>
+                <h3>Become a Times Square franchisee</h3>
+            </div>
+        </div>
+        
+       </div>
+       <div class="line"></div>
+       <div class="bot_foot">
+        <div class="social_icon">
+            <div class="icon_box">
+                <i class="ri-facebook-fill"></i>
+                <i class="ri-discord-line"></i>
+                <i class="ri-linkedin-fill"></i>
+                <i class="ri-twitter-fill"></i>
+            </div>
+
+        </div>
+        <div class="copy">
+          <h4>© 2025 Nayef All rights reserved.</h4>
+        </div>
+    </div>
+    </footer>    
+    <script src="{% static 'js/custom.js' %}"></script></body>
+</html>

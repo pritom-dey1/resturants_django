@@ -1,0 +1,20 @@
+<div class="menu_box">
+    {% for j in items %}
+      <div class="box fade-in" data-category="{{ j.category }}">
+        <div class="img_box">
+          <img src="/static{{ j.img.url }}" alt="">
+          <h2 style="font-family: poppins;">{{ j.Name }}</h2>
+          <p style="font-family: poppins;">{{ j.description }}</p>
+        </div>
+        <div class="price_box">
+          <div class="price" style="font-family: poppins;">${{ j.price }}</div>
+          <div class="order1">
+            <a href="{% url 'single_item' j.id %}"><button>View More</button></a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p style="font-family: poppins;">No items found.</p>
+    {% endfor %}
+  </div>
+  

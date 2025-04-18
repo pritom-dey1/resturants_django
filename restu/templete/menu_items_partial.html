@@ -1,0 +1,15 @@
+{% for j in items %}
+<div class="box" data-category="{{ j.category }}">
+    <div class="img_box">
+        <img src="/static{{ j.img.url }}" alt="">
+        <h3 style="font-family: poppins;">{{ j.Name }}</h3>
+        <p style="font-family: poppins;">{{ j.description }}</p>
+    </div>
+    <div class="price_box">
+        <div class="price" style="font-family: poppins;">${{ j.price }}</div>
+        <div class="order1">
+            <a href="/order"><button>Order Now</button></a>
+        </div>
+    </div>
+</div>
+{% endfor %}

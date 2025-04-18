@@ -1,0 +1,11 @@
+{ extends 'hear_foot.html' %}
+{% block title %}{{ product.Name }}{% endblock %}
+{% block main %}
+<div class="product-detail">
+  <img src="/static{{ product.img.url }}" alt="{{ product.Name }}">
+  <h1>{{ product.Name }}</h1>
+  <p>{{ product.description }}</p>
+  <h3>${{ product.price }}</h3>
+  <a href="/order"><button>Order Now</button></a>
+</div>
+{% endblock %}
