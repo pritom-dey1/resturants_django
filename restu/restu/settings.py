@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-2(c09^4)y&!vxfq2z931(_8s^28(6yueh3*f!o3*d8ub&dj&x!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -77,10 +77,15 @@ WSGI_APPLICATION = 'restu.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('FOOD'),
+        'USER': os.environ.get('PRITOM'),
+        'PASSWORD': os.environ.get('12345678'),
+        'HOST': os.environ.get('DATABASE_HOST'),
+        'PORT': os.environ.get('54'),
     }
-}
+}   
+
 
 
 # Password validation
